@@ -31,12 +31,9 @@ app.use(
   })
 )
 app.use(json())
-mongoose.connect(
-  dbConfig.dbs,
-  {
-    useNewUrlParser: true
-  }
-)
+mongoose.connect(dbConfig.dbs, {
+  useNewUrlParser: true
+})
 // passport 配置
 app.use(passport.initialize())
 app.use(passport.session())

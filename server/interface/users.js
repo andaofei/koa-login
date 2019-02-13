@@ -6,20 +6,13 @@ import Passport from './utils/passport'
 const router = new Router({
   prefix: '/users'
 })
-
 // let Store = new Redis().client
-
 // 注册
-router.post('/signup', async (ctx) => {
-  const {
-    username,
-    password
-  } = ctx.request.body
-
+router.post('/signup', async ctx => {
+  const { username, password } = ctx.request.body
   let user = await User.find({
     username
   })
-
   // 用户名已注册
   if (user.length) {
     ctx.body = {
@@ -85,7 +78,7 @@ router.post('/signin', async (ctx, next) => {
   })(ctx, next)
 })
 
-router.get('/getUser', async (ctx) => {
+router.get('/getUser', async ctx => {
   if (ctx.isAuthenticated()) {
     const { username } = ctx.session.passport.user
     ctx.body = {
